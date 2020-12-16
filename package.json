@@ -1,0 +1,31 @@
+{
+  "name": "adr-api",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "serve": "node dist/index.js",
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dan Steren <daniel.d.steren@gmail.com> (https://github.com/dansteren)",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "class-validator": "^0.12.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.4.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.16.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^1.19.1",
+    "ts-loader": "^8.0.12",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

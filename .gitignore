@@ -1,0 +1,17 @@
+# Mac
+.DS_Store
+
+# Node
+node_modules
+
+# Secrets
+.env
+*.local.env
+
+# VS Code
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# Built Files
+dist
