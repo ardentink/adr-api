@@ -8,7 +8,7 @@ import { buildSchema } from 'type-graphql'
     context: ({ req, res }) => ({ req, res })
   })
 
-  const port = process.env.PORT || 4000
+  const port = process.env.APP_PORT || 4000
 
   server.listen(port).then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`)
