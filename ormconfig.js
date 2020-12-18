@@ -24,8 +24,8 @@ module.exports = {
   migrations: [`${folder}/migration/**/*.${extension}`],
   subscribers: [`${folder}/subscriber/**/*.${extension}`],
   cli: {
-    entitiesDir: 'src/entity',
-    migrationsDir: 'src/migration',
-    subscribersDir: 'src/subscriber'
+    entitiesDir: `${folder}/entity`,
+    migrationsDir: `${folder}/migration`,
+    subscribersDir: `${folder}/subscriber`
   }
 }
