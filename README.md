@@ -26,3 +26,4 @@ ADR Api is a node.js backend for storing/managing Architectural Decision Records
    - POSTGRES_PASSWORD
 4. Start up docker desktop: `open -a Docker`
 5. Start the dev DB container: `docker-compose up -D db`
+6. Run migrations: `npx ts-node ./node_modules/.bin/typeorm migration:run`

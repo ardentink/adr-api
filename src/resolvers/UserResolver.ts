@@ -1,10 +1,10 @@
 import { Resolver, Mutation, Arg, Query } from 'type-graphql'
 import { User } from '../entity/User'
 
-@Resolver(User)
+@Resolver()
 export class UserResolver {
   @Mutation(() => User)
-  createUser(
+  async createUser(
     @Arg('email') email: string,
     @Arg('firstName') firstName: string,
     @Arg('lastName') lastName: string
@@ -13,11 +13,12 @@ export class UserResolver {
     user.email = email
     user.firstName = firstName
     user.lastName = lastName
+    await user.save()
     return user
   }
 
   @Query(() => [User])
-  users() {
-    return [new User(1, 'SOME_UUID', 'Example', 'User', 'somebody@example.com')]
+  async users() {
+    return await User.find()
   }
 }
