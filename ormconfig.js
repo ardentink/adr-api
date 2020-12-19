@@ -1,13 +1,12 @@
 let folder, extension, ssl
 
-switch (process.env.NODE_ENV) {
-  case 'production':
-  case 'staging':
+switch (process.env.TYPEORM_DIR) {
+  case 'dist':
     folder = 'dist'
     extension = 'js'
     ssl = true
     break
-  case 'development':
+  case 'src':
   default:
     folder = 'src'
     extension = 'ts'
@@ -15,7 +14,7 @@ switch (process.env.NODE_ENV) {
     break
 }
 
-console.log(`Typeorm configured for ${process.env.NODE_ENV}`)
+console.log(`TypeORM configured to use ${folder} directory`)
 
 module.exports = {
   type: 'postgres',
@@ -26,9 +25,7 @@ module.exports = {
   database: process.env.DB_NAME,
   synchronize: false,
   logging: false,
-  extra: {
-    ssl
-  },
+  extra: { ssl },
   entities: [`${folder}/entity/**/*.${extension}`],
   migrations: [`${folder}/migration/**/*.${extension}`],
   subscribers: [`${folder}/subscriber/**/*.${extension}`],
