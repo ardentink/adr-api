@@ -5,8 +5,8 @@
 node_modules
 
 # Secrets
-.env
-*.local.env
+*.env
+!example.local.env
 
 # VS Code
 .vscode/*

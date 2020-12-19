@@ -84,6 +84,25 @@
         "showReuseMessage": true,
         "clear": true
       }
+    },
+    {
+      "label": "Start Postgres Container",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": [
+        "up",
+        "-d",
+        "db"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
     }
   ],
   "inputs": [

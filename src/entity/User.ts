@@ -1,32 +1,32 @@
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Generated,
+  Column,
+  BaseEntity
+} from 'typeorm'
 import { Field, ID, ObjectType } from 'type-graphql'
 
 @ObjectType()
-export class User {
+@Entity()
+export class User extends BaseEntity {
+  @PrimaryGeneratedColumn()
   id!: number
 
   @Field(() => ID, { name: 'id' })
+  @Column()
+  @Generated('uuid')
   uuid!: string
 
   @Field()
+  @Column()
   firstName!: string
 
   @Field()
+  @Column()
   lastName!: string
 
   @Field()
+  @Column({ unique: true })
   email!: string
-
-  constructor(
-    id?: number,
-    uuid?: string,
-    firstName?: string,
-    lastName?: string,
-    email?: string
-  ) {
-    this.id = id || 1
-    this.uuid = uuid || 'RANDOM_UUID'
-    this.firstName = firstName || 'FirstName'
-    this.lastName = lastName || 'LastName'
-    this.email = email || 'bob@example.com'
-  }
 }
