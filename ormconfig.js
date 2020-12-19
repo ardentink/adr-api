@@ -4,7 +4,22 @@ switch (process.env.TYPEORM_DIR) {
   case 'dist':
     folder = 'dist'
     extension = 'js'
-    ssl = true
+    ssl = {
+      rejectUnauthorized: false
+      // Fixes this error:
+      // Error during migration run:
+      // Error: self signed certificate in certificate chain
+      //     at TLSSocket.onConnectSecure (_tls_wrap.js:1502:34)
+      //     at TLSSocket.emit (events.js:314:20)
+      //     at TLSSocket._finishInit (_tls_wrap.js:937:8)
+      //     at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:711:12) {
+      //   code: 'SELF_SIGNED_CERT_IN_CHAIN'
+      // }
+      // TODO: probably shouldn't have this turned off but it's a quick
+      // fix for now.
+      // See https://github.com/typeorm/typeorm/issues/278
+      // and https://github.com/brianc/node-postgres/issues/2009
+    }
     break
   case 'src':
   default:
