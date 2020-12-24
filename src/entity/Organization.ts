@@ -11,31 +11,27 @@ import { Membership } from './Membership'
 
 @ObjectType()
 @Entity()
-export class User extends BaseEntity {
+export class Organization extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Field(type => ID, { name: 'id' })
+  @Field(() => ID, { name: 'id' })
   @Column({ unique: true })
   @Generated('uuid')
   uuid!: string
 
   @Field()
-  @Column()
-  firstName!: string
-
-  @Field()
-  @Column()
-  lastName!: string
-
-  @Field()
   @Column({ unique: true })
-  email!: string
+  slug!: string
+
+  @Field()
+  @Column()
+  name!: string
 
   @Field(type => Membership)
   @OneToMany(
     type => Membership,
-    membership => membership.user
+    membership => membership.organization
   )
   memberships!: Membership[]
 }
