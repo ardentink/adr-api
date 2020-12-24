@@ -6,9 +6,10 @@
   "private": true,
   "scripts": {
     "build": "tsc",
+    "console": "node --require ts-node/register/transpile-only --experimental-repl-await console.ts",
+    "dev": "nodemon",
     "migrate": "typeorm migration:run",
     "start": "node dist/index.js",
-    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
