@@ -2,7 +2,7 @@ import { Resolver, Mutation, Arg, Query } from 'type-graphql'
 import { User } from '../entities/User'
 
 @Resolver()
-export class UserResolver {
+export default class UserResolver {
   @Mutation(() => User)
   async createUser(
     @Arg('email') email: string,

@@ -1,3 +1,4 @@
-import { UserResolver } from './UserResolver'
+import { NonEmptyArray } from 'type-graphql'
+import { default as UserResolver } from './UserResolver'
 
-export const resolvers = [UserResolver]
+export default [UserResolver] as NonEmptyArray<Function>
