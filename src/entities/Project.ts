@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm'
 import { Field, ID, ObjectType } from 'type-graphql'
-import { User } from '../entity'
+import { User } from '.'
 
 @ObjectType()
 @Entity()

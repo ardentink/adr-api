@@ -41,12 +41,12 @@ module.exports = {
   synchronize: false,
   logging: false,
   extra: { ssl },
-  entities: [`${folder}/entity/**/*.${extension}`],
-  migrations: [`${folder}/migration/**/*.${extension}`],
-  subscribers: [`${folder}/subscriber/**/*.${extension}`],
+  entities: [`${folder}/entities/**/*.${extension}`],
+  migrations: [`${folder}/migrations/**/*.${extension}`],
+  subscribers: [`${folder}/subscribers/**/*.${extension}`],
   cli: {
-    entitiesDir: `${folder}/entity`,
-    migrationsDir: `${folder}/migration`,
-    subscribersDir: `${folder}/subscriber`
+    entitiesDir: `${folder}/entities`,
+    migrationsDir: `${folder}/migrations`,
+    subscribersDir: `${folder}/subscribers`
   }
 }

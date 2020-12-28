@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { createConnection, getRepository } from 'typeorm'
 import Repl from 'repl'
-import * as entities from './src/entity'
+import * as entities from './src/entities'
 
 function clear() {
   process.stdout.write('\u001B[2J\u001B[0;0f')
