@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm'
 import { Field, ID, ObjectType } from 'type-graphql'
-import { Membership } from './Membership'
+import { Membership, Project } from '../entity'
 
 @ObjectType()
 @Entity()
@@ -38,4 +38,11 @@ export class User extends BaseEntity {
     membership => membership.user
   )
   memberships!: Membership[]
+
+  @Field(type => Project)
+  @OneToMany(
+    type => Project,
+    project => project.user
+  )
+  projects!: Project[]
 }
