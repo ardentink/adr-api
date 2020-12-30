@@ -16,15 +16,19 @@
   "author": "Dan Steren <daniel.d.steren@gmail.com> (https://github.com/dansteren)",
   "dependencies": {
     "apollo-server": "^2.19.0",
+    "bcrypt": "^5.0.0",
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
+    "mailgun-js": "^0.22.0",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1",
     "typeorm": "^0.2.29"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/mailgun-js": "^0.22.11",
     "@types/webpack-env": "^1.16.0",
     "nodemon": "^2.0.6",
     "prettier": "^1.19.1",

@@ -1,7 +1,13 @@
 import 'reflect-metadata'
+import Mailgun from 'mailgun-js'
 import { createConnection, getRepository } from 'typeorm'
 import Repl from 'repl'
 import * as entities from './src/entities'
+
+const mailgun = Mailgun({
+  apiKey: process.env.MAILGUN_KEY as string,
+  domain: process.env.MAILGUN_DOMAIN as string
+})
 
 function clear() {
   process.stdout.write('\u001B[2J\u001B[0;0f')
@@ -23,4 +29,5 @@ function clear() {
       }
     }
   })
+  context.Mailer = mailgun.messages()
 })()
