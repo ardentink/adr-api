@@ -48,4 +48,7 @@ export class User extends BaseEntity {
     project => project.user
   )
   projects!: Project[]
+
+  @Column({ unique: true, nullable: true })
+  authToken!: string
 }
