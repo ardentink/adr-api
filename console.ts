@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import Mailgun from 'mailgun-js'
+import Bcrypt from 'bcrypt'
 import { createConnection, getRepository } from 'typeorm'
 import Repl from 'repl'
 import { v4 } from 'uuid'
@@ -21,15 +22,9 @@ function clear() {
   const prompt = 'adr ➜'
   const context = Repl.start(`\x1b[32m${prompt}\x1b[0m `).context
   Object.entries(entities).forEach(([name, entity]) => {
-    context[name] = {
-      get all() {
-        return getRepository(entity).find()
-      },
-      get new() {
-        return new entity()
-      }
-    }
+    context[name] = entity
   })
+  context.Bcrypt = Bcrypt
   context.Mailer = mailgun.messages()
   context.Uuid = v4
 })()
