@@ -44,7 +44,6 @@ export namespace Membership {
   export enum Role {
     member = 'MEMBER',
     owner = 'OWNER',
-    admin = 'ADMIN',
-    super_admin = 'SUPER_ADMIN'
+    admin = 'ADMIN'
   }
 }

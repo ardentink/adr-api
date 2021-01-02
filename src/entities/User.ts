@@ -51,4 +51,7 @@ export class User extends BaseEntity {
 
   @Column({ unique: true, nullable: true })
   authToken!: string
+
+  @Column()
+  isAdmin!: Boolean
 }
