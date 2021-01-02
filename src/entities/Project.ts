@@ -30,7 +30,6 @@ export class Project extends BaseEntity {
   @Column()
   slug!: string
 
-  @Field(type => Project)
   @ManyToOne(
     type => User,
     user => user.projects
