@@ -9,7 +9,7 @@ export default class AuthResolver {
   @Mutation(() => Boolean)
   async sendAccountCreationEmail(
     @Arg('email') email: string,
-    @Ctx() ctx: Context
+    @Ctx() context: Context
   ) {
     // TODO: Validate and convert emails addresses to a canonical form
     // See https://github.com/afair/email_address.js
@@ -33,7 +33,7 @@ export default class AuthResolver {
       text: `Thanks for signing up for ADR! Here's your verification code: ${verificationCode.uuid}`
     }
 
-    await ctx.mailer.send(data)
+    await context.mailer.send(data)
     return true
   }
 
