@@ -5,6 +5,7 @@ import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
 import resolvers from './resolvers'
 import { User } from './entities'
+import { authChecker } from './auth'
 
 const mailgun = Mailgun({
   apiKey: process.env.MAILGUN_KEY as string,
@@ -35,7 +36,7 @@ function extractToken(tokenString: string | undefined): string | undefined {
   await createConnection()
 
   const server = new ApolloServer({
-    schema: await buildSchema({ resolvers }),
+    schema: await buildSchema({ resolvers, authChecker }),
     context: async ({ req, res }) => {
       const token = extractToken(req.headers.authorization)
       const user = token ? await User.findOne({ authToken: token }) : undefined
