@@ -3,6 +3,7 @@ import {
   Column,
   Entity,
   Generated,
+  Index,
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm'
@@ -11,6 +12,7 @@ import { User } from '.'
 
 @ObjectType()
 @Entity()
+@Index(['user', 'slug'], { unique: true })
 export class Project extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number
@@ -25,6 +27,7 @@ export class Project extends BaseEntity {
   name!: string
 
   @Field()
+  @Column()
   slug!: string
 
   @Field(type => Project)
