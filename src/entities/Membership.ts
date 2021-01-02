@@ -42,8 +42,8 @@ export class Membership extends BaseEntity {
 
 export namespace Membership {
   export enum Role {
-    member = 'MEMBER',
-    owner = 'OWNER',
-    admin = 'ADMIN'
+    Member = 'MEMBER',
+    Owner = 'OWNER',
+    Admin = 'ADMIN'
   }
 }
