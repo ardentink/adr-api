@@ -2,6 +2,7 @@ import 'reflect-metadata'
 import Mailgun from 'mailgun-js'
 import { createConnection, getRepository } from 'typeorm'
 import Repl from 'repl'
+import { v4 } from 'uuid'
 import * as entities from './src/entities'
 
 const mailgun = Mailgun({
@@ -30,4 +31,5 @@ function clear() {
     }
   })
   context.Mailer = mailgun.messages()
+  context.Uuid = v4
 })()
