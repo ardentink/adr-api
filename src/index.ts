@@ -4,6 +4,7 @@ import Mailgun from 'mailgun-js'
 import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
 import resolvers from './resolvers'
+import { User } from './entities'
 
 const mailgun = Mailgun({
   apiKey: process.env.MAILGUN_KEY as string,
@@ -13,7 +14,21 @@ const mailgun = Mailgun({
 export interface Context {
   req: Express.Request
   res: Express.Response
+  user?: User
   mailer: Mailgun.Messages
+}
+
+/**
+ * Extracts the raw token from an authorization header if provided.
+ * @param tokenString A string containing the authorization scheme name and the
+ *   actual token. e.g. `Bearer $3CR3T_T0K3N`
+ */
+function extractToken(tokenString: string | undefined): string | undefined {
+  if (!tokenString) {
+    return undefined
+  }
+  const [scheme, token] = tokenString.trim().split(/\s+/)
+  return token
 }
 
 ;(async () => {
@@ -21,10 +36,13 @@ export interface Context {
 
   const server = new ApolloServer({
     schema: await buildSchema({ resolvers }),
-    context: ({ req, res }) => {
+    context: async ({ req, res }) => {
+      const token = extractToken(req.headers.authorization)
+      const user = token ? await User.findOne({ authToken: token }) : undefined
       const context: Context = {
         req,
         res,
+        user,
         mailer: mailgun.messages()
       }
       return context
