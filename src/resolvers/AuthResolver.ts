@@ -1,8 +1,10 @@
-import { UserInputError } from 'apollo-server'
+import { AuthenticationError, UserInputError } from 'apollo-server'
 import Bcrypt from 'bcrypt'
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
+import { v4 as uuid } from 'uuid'
 import { Context } from '../index'
 import { User, VerificationCode } from '../entities'
+import { UserWithAuthToken } from '../entities/UserWithAuthToken'
 
 @Resolver()
 export default class AuthResolver {
@@ -64,6 +66,23 @@ export default class AuthResolver {
     user.password = hashedPassword
     await user.save()
     await code.remove()
+    return user
+  }
+
+  @Mutation(type => UserWithAuthToken)
+  async login(@Arg('email') email: string, @Arg('password') password: string) {
+    const user = await User.findOne({ email })
+    if (!user) {
+      throw new AuthenticationError('Invalid email or password')
+    }
+
+    const match = await Bcrypt.compare(password, user.password)
+    if (!match) {
+      throw new AuthenticationError('Invalid email or password')
+    }
+
+    user.authToken = uuid()
+    await user.save()
     return user
   }
 }
