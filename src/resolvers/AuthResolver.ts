@@ -1,6 +1,6 @@
 import { AuthenticationError, UserInputError } from 'apollo-server'
 import Bcrypt from 'bcrypt'
-import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
+import { Arg, Authorized, Ctx, Mutation, Resolver } from 'type-graphql'
 import { v4 as uuid } from 'uuid'
 import { Context } from '../index'
 import { User, VerificationCode } from '../entities'
@@ -84,5 +84,14 @@ export default class AuthResolver {
     user.authToken = uuid()
     await user.save()
     return user
+  }
+
+  @Authorized()
+  @Mutation(type => Boolean)
+  async logout(@Ctx() context: Context) {
+    const user = context.user!
+    user.authToken = null
+    await user.save()
+    return true
   }
 }

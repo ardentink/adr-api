@@ -5,6 +5,6 @@ import { User } from '.'
 @Entity()
 @ObjectType()
 export class UserWithAuthToken extends User {
-  @Field()
-  authToken!: string
+  @Field(type => String, { nullable: true })
+  authToken?: string
 }
