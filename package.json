@@ -15,7 +15,7 @@
   "author": "Dan Steren <daniel.d.steren@gmail.com> (https://github.com/dansteren)",
   "dependencies": {
     "apollo-server": "^2.19.0",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
     "pg": "^8.5.1",
